@@ -10,6 +10,8 @@ import calendar
 import urllib
 starttime = datetime.datetime.now()
 
+#*/5 * * * * /home2/ryynet_docker/auto_check_docker.py 2>&1  可以加入crontab
+
 ng  = "nginx.conf"
 web = 1
 if os.path.isfile(ng):
