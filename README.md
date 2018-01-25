@@ -46,3 +46,22 @@ sudo systemctl restart docker
 —————————————————————————-----------------------------
 
 ```
+
+
+
+
+## docker 镜像如下： ##
+```python
+FROM django
+MAINTAINER wang<1330407081@qq.com>
+#COPY requirements.txt /usr/src/app/
+RUN apt-get update &&  pip install Django==1.11.7 gunicorn==19.3.0  Pillow  django-tinymce  django-filebrowser  \
+    && apt-get install -y \
+    && apt-get install -y vim \
+    && apt-get clean; rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* /usr/share/doc/* \
+    && echo 'django.1.11.7 installed.'
+```
+
+
+
+
