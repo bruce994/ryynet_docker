@@ -7,7 +7,7 @@
 * 四、修改nginx配置文件，即可成功(注意，可以把不要的站点删除，结合自己的需求),把网站放在www目录下，这块根据自己需求设置
 
 
-
+```
 
 使用脚本自动安装
 
@@ -27,8 +27,7 @@ chmod +x /usr/local/bin/docker-compose
 -------------------------------------------------------------------------------------------------------
 
 
-
-* php5.6国内生成很慢，在这里我已经做好上传阿里云了，可以直接pull (命令 docker pull registry.cn-hangzhou.aliyuncs.com/ryynet/php5.6:1.0)
+ php5.6国内生成很慢，在这里我已经做好上传阿里云了，可以直接pull (命令 docker pull registry.cn-hangzhou.aliyuncs.com/ryynet/php5.6:1.0)
 
 
 ———————————Centos--------------------------------------------------
@@ -45,3 +44,5 @@ EOF
 sudo systemctl daemon-reload
 sudo systemctl restart docker
 —————————————————————————-----------------------------
+
+```
