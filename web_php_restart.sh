@@ -21,7 +21,7 @@ docker run -d -p 80:80 -p 443:443 --name web -v "$PWD"/nginx.conf:/etc/nginx/ngi
 docker rm django-jiahe --force
 cd /home2/ryynet_docker/www/jiahe.zz.lanrenmb.com/
 #init_admin.py 初始管理员账号密码
-docker run --name django-jiahe -v "$PWD":/usr/src/app -w /usr/src/app -p 8000:8000 -d 118b37c279c0 bash -c "python manage.py makemigrations && python manage.py migrate && python init_admin.py && /usr/local/bin/gunicorn --bind 0.0.0.0:8000 mysite.wsgi:application -w 2"
+docker run -d -p 8000:8000 --name django-jiahe -v "$PWD":/usr/src/app -w /usr/src/app  --link mysql:mysql  -it 37d84073bd99    bash -c "python manage.py makemigrations && python manage.py migrate && python init_admin.py && /usr/local/bin/gunicorn --bind 0.0.0.0:8000 mysite.wsgi:application -w 2" 
 
 
 
