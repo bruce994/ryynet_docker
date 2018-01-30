@@ -18,12 +18,12 @@ docker run -d -p 9002:9000  --name jiahe -v "$PWD"/php-fpm.d:/usr/local/etc/php-
 docker run -d -p 80:80 -p 443:443 --name web -v "$PWD"/nginx.conf:/etc/nginx/nginx.conf:ro -v "$PWD"/logs:/var/log/nginx  -v "$PWD":/usr/share/nginx/html:ro -v /etc/localtime:/etc/localtime:ro  --link php5.6  --link php5.6-crm0831  --link jiahe --link django-jiahe  -it nginx
 
 #django
-docker rm django-jiahe --force
-cd /home2/ryynet_docker/www/jiahe.zz.lanrenmb.com/
-#init_admin.py 初始管理员账号密码
-docker run -d -p 8000:8000 --name django-jiahe -v "$PWD":/usr/src/app -w /usr/src/app  --link mysql:mysql  -it 37d84073bd99    bash -c "python manage.py makemigrations && python manage.py migrate && python init_admin.py && /usr/local/bin/gunicorn --bind 0.0.0.0:8000 mysite.wsgi:application -w 2" 
-
-
+docker rm django-20171215 --force
+cd /home2/ryynet_docker/www/20171215.tp.lanrenmb.cn/
+#init_admin.py 初始管理员账号密码 生产环境
+#docker run -d -p 8001:8000 --name django-20171215 -v "$PWD":/usr/src/app -w /usr/src/app  --link mysql:mysql  -it 88e24e8c54a6  bash -c "python manage.py makemigrations && python manage.py migrate && python init_admin.py && /usr/local/bin/gunicorn --bind 0.0.0.0:8000 mysite.wsgi:application -w 2"
+#开发环境
+docker run -d -p 8001:8000 --name django-20171215 -v "$PWD":/usr/src/app -w /usr/src/app  --link mysql:mysql  -it 88e24e8c54a6  bash -c "python manage.py runserver 0.0.0.0:8000"
 
 
 
