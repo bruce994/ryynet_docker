@@ -28,6 +28,7 @@ chmod +x /usr/local/bin/docker-compose
 
 
  php5.6国内生成很慢，在这里我已经做好上传阿里云了，可以直接pull (命令 docker pull registry.cn-hangzhou.aliyuncs.com/ryynet/php5.6:1.0)
+ django-1.11.7阿里云镜像 （docker pull registry.cn-hangzhou.aliyuncs.com/ryynet/django-1.11.7:1.0）
 
 
 ———————————Centos--------------------------------------------------
