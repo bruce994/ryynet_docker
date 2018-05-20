@@ -2,32 +2,31 @@
 #可以加入开机启动脚本中 chmod +x /etc/rc.local
 #/bin/bash /home/web_php_restart.sh
 
+service docker stop
 service docker start
-cd /home2/ryynet_docker/ 
+cd /home/ryynet_docker/
 docker rm mysql --force
-docker rm php5.6 --force
-docker rm php5.6-crm0831 --force
-docker rm jiahe --force
+docker rm lanren --force
+docker rm guest --force
+docker rm guest1 --force
+docker rm payUser --force
+docker rm test --force
+docker rm virtural --force
 docker rm web --force
 docker run --name mysql -d -p 3306:3306 -v "$PWD"/mysql:/var/lib/mysql -e MYSQL_ROOT_PASSWORD=147258 -it mysql:5.7.21
 
-docker run -d -p 9000:9000   --name php5.6 -v "$PWD"/php-fpm.d:/usr/local/etc/php-fpm.d  -v "$PWD":/var/www/html -v "$PWD"/php.ini:/usr/local/etc/php/php.ini  -w /var/www/html    --link mysql:mysql  -it 7543e18fff02 
-docker run -d -p 9001:9000  --name php5.6-crm0831 -v "$PWD"/php-fpm.d:/usr/local/etc/php-fpm.d  -v "$PWD":/var/www/html -v "$PWD"/php.ini:/usr/local/etc/php/php.ini  -w /var/www/html    --link mysql:mysql  -it 7543e18fff02 
-docker run -d -p 9002:9000  --name jiahe -v "$PWD"/php-fpm.d:/usr/local/etc/php-fpm.d  -v "$PWD":/var/www/html -v "$PWD"/php.ini:/usr/local/etc/php/php.ini  -w /var/www/html  --link mysql:mysql  -it 7543e18fff02 
+docker run -d -p 9000:9000  --name lanren -v "$PWD"/php-fpm.d:/usr/local/etc/php-fpm.d  -v /home/ryynet1:/var/www/html -v /home2/Guest:/var/www/html2  -v "$PWD"/php.ini:/usr/local/etc/php/php.ini  -w /var/www/html    --link mysql:mysql  -it cc98219e1882
+docker run -d -p 9001:9000  --name guest -v "$PWD"/php-fpm.d:/usr/local/etc/php-fpm.d  -v /home/ryynet1:/var/www/html -v /home2/Guest:/var/www/html2  -v "$PWD"/php.ini:/usr/local/etc/php/php.ini  -w /var/www/html    --link mysql:mysql  -it cc98219e1882
+docker run -d -p 9002:9000  --name test -v "$PWD"/php-fpm.d:/usr/local/etc/php-fpm.d  -v /home/ryynet1:/var/www/html -v /home2/Guest:/var/www/html2  -v "$PWD"/php.ini:/usr/local/etc/php/php.ini  -w /var/www/html    --link mysql:mysql  -it cc98219e1882
+docker run -d -p 9003:9000  --name virtural  -v "$PWD"/php-fpm.d:/usr/local/etc/php-fpm.d  -v /home/ryynet1:/var/www/html -v /home2/Guest:/var/www/html2  -v "$PWD"/php.ini:/usr/local/etc/php/php.ini  -w /var/www/html    --link mysql:mysql  -it cc98219e1882
+docker run -d -p 9004:9000  --name guest1 -v "$PWD"/php-fpm.d:/usr/local/etc/php-fpm.d  -v /home/ryynet1:/var/www/html -v /home2/Guest:/var/www/html2  -v "$PWD"/php.ini:/usr/local/etc/php/php.ini  -w /var/www/html    --link mysql:mysql  -it cc98219e1882
 
 
+#--cpu-period 结合 --cpu-quota 配置是固定的，无论 CPU 是闲还是繁忙，如上配置，容器最多只能使用 2 个 CPU 到 100%。
+docker run -d -p 9005:9000 --cpu-period=100000 --cpu-quota=200000  --name payUser -v "$PWD"/php-fpm.d:/usr/local/etc/php-fpm.d  -v /home/ryynet1:/var/www/html -v /home2/Guest:/var/www/html2  -v "$PWD"/php.ini:/usr/local/etc/php/php.ini  -w /var/www/html    --link mysql:mysql  -it cc98219e1882
 
-#django
-docker rm django-20171215 --force
-cd /home2/ryynet_docker/www/20171215.tp.lanrenmb.cn/
-#init_admin.py 初始管理员账号密码 生产环境
-#docker run -d -p 8001:8000 --name django-20171215 -v "$PWD":/usr/src/app -w /usr/src/app  --link mysql:mysql  -it 88e24e8c54a6  bash -c "python manage.py makemigrations && python manage.py migrate && python init_admin.py && /usr/local/bin/gunicorn --bind 0.0.0.0:8000 mysite.wsgi:application -w 2"
-#开发环境
-docker run -d -p 8001:8000 --name django-20171215 -v "$PWD":/usr/src/app -w /usr/src/app  --link mysql:mysql  -it 88e24e8c54a6  bash -c "python manage.py runserver 0.0.0.0:8000"
-
-
-cd /home2/ryynet_docker/
-docker run -d -p 80:80 -p 443:443 --name web -v "$PWD"/nginx.conf:/etc/nginx/nginx.conf:ro -v "$PWD"/logs:/var/log/nginx  -v "$PWD":/usr/share/nginx/html:ro -v /etc/localtime:/etc/localtime:ro  --link php5.6  --link php5.6-crm0831  --link jiahe --link django-jiahe  -it nginx
+cd /home/ryynet_docker/
+docker run -d -p 80:80 -p 443:443 --name web -v "$PWD"/nginx.conf:/etc/nginx/nginx.conf:ro -v "$PWD"/logs:/var/log/nginx  -v /home/ryynet1:/usr/share/nginx/html:ro  -v /home2/Guest:/usr/share/nginx/html2:ro   -v /etc/localtime:/etc/localtime:ro  --link lanren  --link guest  --link guest1  --link payUser --link test --link virtural   -it ec7e83446356
 
 
 
