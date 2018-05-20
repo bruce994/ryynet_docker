@@ -1,10 +1,19 @@
-# ** Docker php5.6 fpm  nginx  mysql 配置  **   #
+# ** Docker php5.6 fpm  nginx  mysql 配置(仁裕元科技专属配置)  **   #
 #  操作说明 #
 *  一、进入php_Dockerfile文件夹，运行 docker build -t php:5.6-fpm .  创建php:5.6-fpm镜像，这里包括了主要的组件如：zend gettext mysql mysqli opcache pdo_mysql sockets exif zip imagick等等（注意这里拉取国外镜像，推荐使用阿里云docker加速）
 *  php5.6国内生成很慢，在这里我已经做好上传阿里云了，可以直接pull  (命令 docker pull registry.cn-hangzhou.aliyuncs.com/ryynet/php5.6:1.0)
 * 二、在ryynet_docker目录下新建log  www  mysql  目录
 * 三、直接执行./web_php_restart.sh 这样就会自动生成nginx、mysql容器，并且挂载日志目录log、网站目录www,数据库账号root,密码147258 (可以把该文件加入服务器启动项)
 * 四、修改nginx配置文件，即可成功(注意，可以把不要的站点删除，结合自己的需求),把网站放在www目录下，这块根据自己需求设置
+
+## 由于nginx docker 需要挂载多个目录,重新创建nginx容器 ##
+```
+FROM registry.cn-hangzhou.aliyuncs.com/ryynet/php5.6:1.0 
+RUN mkdir -p /var/www/html2
+
+```
+
+
 
 
 ```
