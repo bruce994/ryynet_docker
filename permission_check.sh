@@ -1,4 +1,4 @@
-path="/home2/Guest/vote.dsgjxc.com"
+path="/home2/Guest/xinyinxiang.zz.lanrenmb.com"
 chmod 777 "$path"
 cd "$path"
 chmod 777 infoconfig.php
