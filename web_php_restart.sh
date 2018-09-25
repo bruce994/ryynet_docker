@@ -3,17 +3,17 @@
 #/bin/bash /home/web_php_restart.sh
 
 service docker start
-cd /home2/ryynet_docker/ 
+cd /home2/ryynet_docker/
 docker rm mysql --force
 docker rm php5.6 --force
 docker rm php5.6-crm0831 --force
 docker rm jiahe --force
 docker rm web --force
-docker run --name mysql -d -p 3306:3306 -v "$PWD"/mysql:/var/lib/mysql -e MYSQL_ROOT_PASSWORD=147258 -it mysql:5.7.21
+docker run --name mysql -d -p 3306:3306 -v "$PWD"/mysql:/var/lib/mysql -e MYSQL_ROOT_PASSWORD=b29VURchQW-d -it mysql:5.7.21
 
-docker run -d -p 9000:9000   --name php5.6 -v "$PWD"/php-fpm.d:/usr/local/etc/php-fpm.d  -v "$PWD":/var/www/html -v "$PWD"/php.ini:/usr/local/etc/php/php.ini  -w /var/www/html    --link mysql:mysql  -it 7543e18fff02 
-docker run -d -p 9001:9000  --name php5.6-crm0831 -v "$PWD"/php-fpm.d:/usr/local/etc/php-fpm.d  -v "$PWD":/var/www/html -v "$PWD"/php.ini:/usr/local/etc/php/php.ini  -w /var/www/html    --link mysql:mysql  -it 7543e18fff02 
-docker run -d -p 9002:9000  --name jiahe -v "$PWD"/php-fpm.d:/usr/local/etc/php-fpm.d  -v "$PWD":/var/www/html -v "$PWD"/php.ini:/usr/local/etc/php/php.ini  -w /var/www/html  --link mysql:mysql  -it 7543e18fff02 
+docker run -d -p 9000:9000   --name php5.6 -v "$PWD"/php-fpm.d:/usr/local/etc/php-fpm.d  -v "$PWD":/var/www/html -v "$PWD"/php.ini:/usr/local/etc/php/php.ini  -w /var/www/html    --link mysql:mysql  -it 7543e18fff02
+docker run -d -p 9001:9000  --name php5.6-crm0831 -v "$PWD"/php-fpm.d:/usr/local/etc/php-fpm.d  -v "$PWD":/var/www/html -v "$PWD"/php.ini:/usr/local/etc/php/php.ini  -w /var/www/html    --link mysql:mysql  -it 7543e18fff02
+docker run -d -p 9002:9000  --name jiahe -v "$PWD"/php-fpm.d:/usr/local/etc/php-fpm.d  -v "$PWD":/var/www/html -v "$PWD"/php.ini:/usr/local/etc/php/php.ini  -w /var/www/html  --link mysql:mysql  -it 7543e18fff02
 
 
 
