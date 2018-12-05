@@ -1,3 +1,7 @@
+## 开发日志： ##
+* 20181205  mysql5.7  my.cnf 增加8小时
+
+
 # ** Docker php5.6 fpm  nginx  mysql 配置  **   #
 #  操作说明 #
 *  一、进入php_Dockerfile文件夹，运行 docker build -t php:5.6-fpm .  创建php:5.6-fpm镜像，这里包括了主要的组件如：zend gettext mysql mysqli opcache pdo_mysql sockets exif zip imagick等等（注意这里拉取国外镜像，推荐使用阿里云docker加速）

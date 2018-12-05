@@ -1,2 +1,4 @@
 [mysqld]
 max_allowed_packet=32M
+default-time-zone=timezone
+default-time-zone = '+8:00' #mysql5.7 需要时区加8小时
