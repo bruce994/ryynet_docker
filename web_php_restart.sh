@@ -2,6 +2,8 @@
 #可以加入开机启动脚本中 chmod +x /etc/rc.local
 #/bin/bash /home/web_php_restart.sh
 
+service docker start
+
 cd /home/ryynet_docker/
 docker rm mysql --force
 docker rm lanren --force
@@ -13,8 +15,6 @@ docker rm test --force
 docker rm virtural --force
 docker rm web --force
 
-service docker stop
-service docker start
 
 docker run --name mysql -d -p 3306:3306 -v "$PWD"/mysql:/var/lib/mysql -e MYSQL_ROOT_PASSWORD=b29VURchQW-d-S2Y -it mysql:5.7.21
 
