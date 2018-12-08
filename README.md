@@ -1,5 +1,5 @@
 ## 开发日志： ##
-* 20181205  mysql5.7  my.cnf 增加8小时
+* 20181205  mysql容器增加中国时区 
 
 
 # ** Docker php5.6 fpm  nginx  mysql 配置  **   #
