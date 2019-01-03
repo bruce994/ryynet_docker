@@ -30,10 +30,18 @@ docker run -d -p 9005:9000 --cpu-period=100000 --cpu-quota=200000  --name payUse
 
 docker run -d -p 9006:9000 --cpu-period=100000 --cpu-quota=200000  --name payUser2 -v "$PWD"/php-fpm.d:/usr/local/etc/php-fpm.d  -v /home/ryynet1:/var/www/html -v /home2/Guest:/var/www/html2  -v "$PWD"/php.ini:/usr/local/etc/php/php.ini  -w /var/www/html    --link mysql:mysql  -it cc98219e1882
 
+
+#django
+docker rm django-shop --force
+cd /home/ryynet1/www/shop.lanrenmb.com/
+#init_admin.py 初始管理员账号密码 生成环境
+#docker run -d -p 8005:8000 --name django-bao1215 -v "$PWD":/usr/src/app -w /usr/src/app  --link mysql:mysql  -it a3f6b2fa108d  bash -c "python manage.py makemigrations && python  manage.py migrate && python init_admin.py && /usr/local/bin/gunicorn --bind 0.0.0.0:8000 mysite.wsgi:application -w 2"
+#开发环境
+docker run -d -p 8005:8000 --name django-shop -v "$PWD":/usr/src/app -w /usr/src/app  --link mysql:mysql  -it a3f6b2fa108d  bash -c "python manage.py runserver 0.0.0.0:8000"
+
+
 cd /home/ryynet_docker/
-docker run -d -p 80:80 -p 443:443 --name web -v "$PWD"/nginx.conf:/etc/nginx/nginx.conf:ro -v "$PWD"/logs:/var/log/nginx  -v /home/ryynet1:/usr/share/nginx/html:ro  -v /home2/Guest:/usr/share/nginx/html2:ro   -v /etc/localtime:/etc/localtime:ro  --link lanren  --link guest  --link guest1  --link payUser --link payUser2 --link test --link virtural   -it ec7e83446356
-
-
+docker run -d -p 80:80 -p 443:443 --name web -v "$PWD"/nginx.conf:/etc/nginx/nginx.conf:ro -v "$PWD"/logs:/var/log/nginx  -v /home/ryynet1:/usr/share/nginx/html:ro  -v /home2/Guest:/usr/share/nginx/html2:ro   -v /etc/localtime:/etc/localtime:ro  --link lanren  --link guest  --link guest1  --link payUser --link payUser2 --link django-shop --link test --link virtural   -it ec7e83446356
 
 
 
