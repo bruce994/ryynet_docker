@@ -44,8 +44,8 @@ cd /home/ryynet_docker/
 docker run -d -p 80:80 -p 443:443 --name web -v "$PWD"/nginx.conf:/etc/nginx/nginx.conf:ro -v "$PWD"/logs:/var/log/nginx  -v /home/ryynet1:/usr/share/nginx/html:ro  -v /home2/Guest:/usr/share/nginx/html2:ro   -v /etc/localtime:/etc/localtime:ro  --link lanren  --link guest  --link guest1  --link payUser --link payUser2 --link django-shop --link test --link virtural   -it ec7e83446356
 
 
-
-
+#mysql 经常被黑
+docker stop mysql
 
 
 
