@@ -1,5 +1,6 @@
 ## 开发日志： ##
 * 20181205  mysql容器增加中国时区 
+* 20190524 nginx针对不同目录，配置不同php版本
 
 
 # ** Docker php5.6 fpm  nginx  mysql 配置  **   #
