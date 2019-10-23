@@ -8,6 +8,7 @@
 
 ## 开发日志： ##
 * 20190719 php.ini 增加 max_input_vars = 3000 提交表单限制
+* 20191023 web_php_restart.sh  --cpus=1 限制容器能使用的 CPU 核数
 
 
 ## 由于nginx docker 需要挂载多个目录,重新创建nginx容器 ##
