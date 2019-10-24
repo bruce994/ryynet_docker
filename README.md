@@ -9,6 +9,23 @@
 ## 开发日志： ##
 * 20190719 php.ini 增加 max_input_vars = 3000 提交表单限制
 * 20191023 web_php_restart.sh  --cpus=1 限制容器能使用的 CPU 核数
+* 20191024 nginx php轮询分流
+```
+一、nginx.conf 配置如下：
+upstream bypass-php{
+    server lanren-haibao:9000;
+    server virtural:9000;
+    server guest1:9000;
+}
+
+二、把fastcgi_pass xxxx:9000 改为bypass-php
+location ~ \.php {
+	 fastcgi_pass  bypass-php;
+	 ... 
+
+```
+
+
 
 
 ## 由于nginx docker 需要挂载多个目录,重新创建nginx容器 ##
