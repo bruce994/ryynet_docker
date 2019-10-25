@@ -23,6 +23,7 @@ location ~ \.php {
 	 fastcgi_pass  bypass-php;
 	 ... 
 
+注意分流php fastcgi SCRIPT_FILENAME,PHP_VALUE 参数与主机保持一致
 ```
 
 
