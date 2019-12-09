@@ -1,6 +1,7 @@
 ## 开发日志： ##
 * 20181205  mysql容器增加中国时区 
 * 20190524 nginx针对不同目录，配置不同php版本
+* 20190719 php.ini 增加 max_input_vars = 3000 提交表单限制
 
 
 # ** Docker php5.6 fpm  nginx  mysql 配置  **   #
@@ -10,9 +11,6 @@
 * 二、在ryynet_docker目录下新建log  www  mysql  目录
 * 三、直接执行./web_php_restart.sh 这样就会自动生成nginx、mysql容器，并且挂载日志目录log、网站目录www,数据库账号root,密码147258 (可以把该文件加入服务器启动项)
 * 四、修改nginx配置文件，即可成功(注意，可以把不要的站点删除，结合自己的需求),把网站放在www目录下，这块根据自己需求设置
-
-## 开发日志： ##
-* 20190719 php.ini 增加 max_input_vars = 3000 提交表单限制
 
 
 ```
