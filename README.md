@@ -1,4 +1,4 @@
-# ** Docker php5.6 fpm  nginx  mysql 配置(仁裕元科技专属配置)  **   #
+# ** Docker php5.6 fpm  nginx  mysql 配置(懒人云科技专属配置)  **   #
 #  操作说明 #
 *  一、进入php_Dockerfile文件夹，运行 docker build -t php:5.6-fpm .  创建php:5.6-fpm镜像，这里包括了主要的组件如：zend gettext mysql mysqli opcache pdo_mysql sockets exif zip imagick等等（注意这里拉取国外镜像，推荐使用阿里云docker加速）
 *  php5.6国内生成很慢，在这里我已经做好上传阿里云了，可以直接pull  (命令 docker pull registry.cn-hangzhou.aliyuncs.com/ryynet/php5.6:1.0)
@@ -26,6 +26,7 @@ location ~ \.php {
 注意分流php fastcgi SCRIPT_FILENAME,PHP_VALUE 参数与主机保持一致
 ```
 
+* 20200306 php5.6容器增加redis扩展
 
 
 
@@ -122,6 +123,13 @@ tar -xf /usr/local/lib/php/extensions/no-debug-non-zts-20131226/imagick.tgz -C /
 rm /usr/local/lib/php/extensions/no-debug-non-zts-20131226/imagick.tgz
 
 RUN docker-php-ext-install /usr/local/lib/php/extensions/no-debug-non-zts-20131226/imagick-3.4.0
+
+# Install redis
+RUN curl -L -o /tmp/redis.tar.gz https://github.com/phpredis/phpredis/archive/2.2.7.tar.gz \
+    && tar xfz /tmp/redis.tar.gz \
+    && rm -r /tmp/redis.tar.gz \
+    && mv phpredis-2.2.7 /usr/src/php/ext/redis \
+    && docker-php-ext-install redis
 
 # Install PECL extensions
 RUN apt-get install -y \
