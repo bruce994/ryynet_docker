@@ -2,6 +2,7 @@
 * 20181205  mysql容器增加中国时区 
 * 20190524 nginx针对不同目录，配置不同php版本
 * 20190719 php.ini 增加 max_input_vars = 3000 提交表单限制
+* 20200306 php5.6容器增加redis扩展
 
 
 # ** Docker php5.6 fpm  nginx  mysql 配置  **   #
