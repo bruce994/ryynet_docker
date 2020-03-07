@@ -21,6 +21,15 @@
 在测试或开发环境中 Docker 官方为了简化安装流程，提供了一套便捷的安装脚本，CentOS 系统上可以使用这套脚本安装：
 $ curl -fsSL get.docker.com -o get-docker.sh
 $ sudo sh get-docker.sh --mirror Aliyun
+
+-----------centos8 ----
+[**如果安装过程中，提示package docker-ce-3:19.03.5-3.el7.x86_64 requires containerd.io >= 1.2.2-3, but none of the providers can be installed 是containerd.io版本过低，需要单独更新下containerd.io（CentOS8下可能存在此问题）**]
+在官网下载安装最新版containerd.io：
+sudo dnf install https://download.docker.com/linux/centos/7/x86_64/stable/Packages/containerd.io-1.2.6-3.3.el7.x86_64.rpm
+----------------------
+
+
+
 执行这个命令后，脚本就会自动的将一切准备工作做好，并且把 Docker CE 的 edge 版本安装在系统中。
 启动 Docker CE
 
