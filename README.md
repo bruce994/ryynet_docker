@@ -61,6 +61,7 @@ chmod +x /usr/local/bin/docker-compose
 
 
  php5.6国内生成很慢，在这里我已经做好上传阿里云了，可以直接pull (命令 docker pull registry.cn-hangzhou.aliyuncs.com/ryynet/php5.6:1.0)
+ php7.2国内生成很慢，在这里我已经做好上传阿里云了，可以直接pull (命令 docker pull registry.cn-hangzhou.aliyuncs.com/ryynet/php7.2:1.0)
  django-1.11.7阿里云镜像 （docker pull registry.cn-hangzhou.aliyuncs.com/ryynet/django-1.11.7:1.0）
 
 
@@ -84,7 +85,7 @@ sudo systemctl restart docker
 
 
 
-## php5.6 镜像如下： ##
+## php5.6-fpm 镜像如下： ##
 ```
 FROM php:5.6-fpm
 MAINTAINER wang<1330407081@qq.com>
@@ -154,6 +155,29 @@ RUN apt-get install -y \
 
 ```
 
+## php7.2-fpm 镜像如下： ##
+```
+FROM php:7.3.2-fpm-stretch
+RUN apt-get update && \
+    pecl channel-update pecl.php.net && \
+    pecl install apcu igbinary mongodb && \
+    # compile Redis with igbinary support
+    pecl bundle redis && cd redis && phpize && ./configure --enable-redis-igbinary && make && make install && \
+    docker-php-ext-install bcmath sockets pdo_mysql gd exif zip && \
+    docker-php-ext-enable apcu igbinary mongodb opcache redis && \
+    apt-get -y install libmagickwand-dev && \
+    pecl install imagick  && \
+    docker-php-ext-enable imagick && \
+    docker-php-source delete && \
+    rm -r /tmp/* /var/cache/* /var/www/html/*
 
+    
+RUN echo '\
+opcache.interned_strings_buffer=16\n\
+opcache.load_comments=Off\n\
+opcache.max_accelerated_files=16000\n\
+opcache.save_comments=Off\n\
+' >> /usr/local/etc/php/conf.d/docker-php-ext-opcache.ini
+```
 
 
