@@ -6,6 +6,7 @@ service docker start
 
 cd /home/ryynet_docker/
 docker rm mysql --force
+docker rm php7.2 --force
 docker rm redis --force
 docker rm lanren --force
 docker rm guest --force
@@ -31,8 +32,8 @@ docker run -d -p 9004:9000 --cpus=0.2  --name guest1 -v "$PWD"/php-fpm.d:/usr/lo
 docker run -d -p 9003:9000 --cpus=0.2  --name virtural  -v "$PWD"/php-fpm.d:/usr/local/etc/php-fpm.d  -v /home/ryynet1:/var/www/html  -v /home/ryynet1/www/bao.lanrenmb.com:/var/www/bao  -v /home2/Guest:/var/www/html2  -v "$PWD"/php.ini:/usr/local/etc/php/php.ini  -w /var/www/html   --link redis   -it 66856d081861
 docker run -d -p 9010:9000 --cpus=0.3  --name lanren-haibao -v "$PWD"/php-fpm.d:/usr/local/etc/php-fpm.d  -v /home/ryynet1:/var/www/html  -v /home/ryynet1/www/bao.lanrenmb.com:/var/www/bao  -v /home2/Guest:/var/www/html2  -v "$PWD"/php.ini:/usr/local/etc/php/php.ini  -w /var/www/html   --link redis   -it 66856d081861
 docker run -d -p 9005:9000 --cpus=1  --name payUser -v "$PWD"/php-fpm.d:/usr/local/etc/php-fpm.d  -v /home/ryynet1:/var/www/html -v /home2/Guest:/var/www/html2  -v "$PWD"/php.ini:/usr/local/etc/php/php.ini  -w /var/www/html   --link redis   -it 66856d081861
-
 docker run -d -p 9006:9000 --cpus=1  --name payUser2 -v "$PWD"/php-fpm.d:/usr/local/etc/php-fpm.d  -v /home/ryynet1:/var/www/html -v /home2/Guest:/var/www/html2  -v "$PWD"/php.ini:/usr/local/etc/php/php.ini  -w /var/www/html  --link redis  -it 66856d081861
+docker run -d -p 9007:9000 --cpus=1  --name php7.2 -v "$PWD"/php-fpm.d:/usr/local/etc/php-fpm.d  -v /home/ryynet1:/var/www/html -v /home2/Guest:/var/www/html2  -v "$PWD"/php7.2.ini:/usr/local/etc/php/php.ini  -w /var/www/html  --link redis  -it 91f15866c89a
 
 
 #django
@@ -45,7 +46,7 @@ docker run -d -p 8005:8000 --name django-shop -v "$PWD":/usr/src/app -w /usr/src
 
 
 cd /home/ryynet_docker/
-docker run -d -p 80:80 -p 443:443 --name web -v "$PWD"/nginx.conf:/etc/nginx/nginx.conf:ro -v "$PWD"/logs:/var/log/nginx  -v /home/ryynet1:/usr/share/nginx/html:ro  -v /home2/Guest:/usr/share/nginx/html2:ro   -v /etc/localtime:/etc/localtime:ro  --link lanren  --link guest  --link guest1  --link payUser --link payUser2 --link django-shop --link test --link virtural --link lanren-haibao  -it ec7e83446356
+docker run -d -p 80:80 -p 443:443 --name web -v "$PWD"/nginx.conf:/etc/nginx/nginx.conf:ro -v "$PWD"/logs:/var/log/nginx  -v /home/ryynet1:/usr/share/nginx/html:ro  -v /home2/Guest:/usr/share/nginx/html2:ro   -v /etc/localtime:/etc/localtime:ro  --link lanren  --link guest  --link guest1  --link payUser --link payUser2 --link django-shop --link test --link virtural --link lanren-haibao --link php7.2  -it ec7e83446356
 
 
 
