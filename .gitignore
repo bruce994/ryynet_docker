@@ -1,6 +1,7 @@
 my_container/
 logs/
 mysql/
+redis_data/
 phpMyAdmin/
 www2/
 www/
