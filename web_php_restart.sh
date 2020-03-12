@@ -19,7 +19,8 @@ docker rm virtural --force
 docker rm lanren-haibao --force
 docker rm web --force
 
-docker run --name redis -d -p 6379:6379 -v "$PWD"/redis.conf:/usr/local/etc/redis/redis.conf  -v "$PWD"/redis_data:/data  -it redis:latest
+#不要暴露端口
+docker run --name redis -d -v "$PWD"/redis.conf:/usr/local/etc/redis/redis.conf  -v "$PWD"/redis_data:/data  -it redis:latest
 
 #mysql 经常被黑
 #docker run --name mysql -d -p 3306:3306 -v "$PWD"/mysql:/var/lib/mysql -e MYSQL_ROOT_PASSWORD=b29VURchQW-d-S2Y -it mysql:5.7.21

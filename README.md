@@ -27,6 +27,7 @@ location ~ \.php {
 ```
 
 * 20200306 php5.6容器增加redis扩展
+* 20200312 docker redis 移除端口(容易被黑,mysql容器也一样)
 
 
 
