@@ -20,6 +20,7 @@ docker rm lanren-haibao --force
 docker rm web --force
 
 #不要暴露端口
+rm -rf redis_data
 docker run --name redis -d -v "$PWD"/redis.conf:/usr/local/etc/redis/redis.conf  -v "$PWD"/redis_data:/data  -it redis:latest
 
 #mysql 经常被黑
