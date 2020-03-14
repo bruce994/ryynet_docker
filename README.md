@@ -28,7 +28,10 @@ location ~ \.php {
 
 * 20200306 php5.6容器增加redis扩展
 * 20200312 docker redis 移除端口(容易被黑,mysql容器也一样)
-
+* 20200314 docker go-lang 映射包目录使其go容器找到包,同时可以不用增加多个go容器，利用绑定端口不同,可以使一个go容器运行多个go项目 
+```
+-v /home2/Guest/20200310.zz.whlanren123.top/Service/common:/go/src/common 
+```
 
 
 ## 由于nginx docker 需要挂载多个目录,重新创建nginx容器 ##
