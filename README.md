@@ -32,6 +32,18 @@ location ~ \.php {
 ```
 -v /home2/Guest/20200310.zz.whlanren123.top/Service/common:/go/src/common 
 ```
+* 20200316 docker 设置时区与主机同步 
+```
+-v /etc/localtime:/etc/localtime:ro 
+```
+
+
+
+
+
+
+
+
 
 
 ## 由于nginx docker 需要挂载多个目录,重新创建nginx容器 ##

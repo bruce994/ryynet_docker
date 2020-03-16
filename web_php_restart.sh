@@ -37,7 +37,7 @@ docker run -d -p 9006:9000 --cpus=1  --name payUser2 -v "$PWD"/php-fpm.d:/usr/lo
 docker run -d -p 9007:9000 --cpus=1  --name php7.2 -v "$PWD"/php-fpm.d:/usr/local/etc/php-fpm.d  -v /home/ryynet1:/var/www/html -v /home2/Guest:/var/www/html2  -v "$PWD"/php7.2.ini:/usr/local/etc/php/php.ini  -w /var/www/html  --link redis  -it 91f15866c89a
 
 docker rm go-202003 --force
-docker run -d  --name go-202003  -v /home2/Guest:/go/src/app -v /home2/Guest/20200310.zz.whlanren123.top/Service/common:/go/src/common  -it e213acca81e6
+docker run -d  --name go-202003  -v /home2/Guest:/go/src/app -v /home2/Guest/20200310.zz.whlanren123.top/Service/common:/go/src/common  -v /etc/localtime:/etc/localtime:ro  -it e213acca81e6
 
 
 #django
