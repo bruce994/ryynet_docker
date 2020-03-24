@@ -37,7 +37,14 @@ location ~ \.php {
 -v /etc/localtime:/etc/localtime:ro 
 ```
 
-
+* 20200324 nginx不同目录下可以指定不同php版本
+```
+location /addons/shimmer_liveshop/ {
+     location ~* \.php(/|$) {
+		 fastcgi_pass  php7.2:9000;
+     }
+}
+```
 
 
 
