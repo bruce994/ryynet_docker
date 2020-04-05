@@ -47,6 +47,7 @@ php5.6国内生成很慢，在这里我已经做好上传阿里云了，可以�
 php7.2国内生成很慢，在这里我已经做好上传阿里云了，可以直接pull (命令 docker pull registry.cn-hangzhou.aliyuncs.com/ryynet/php7.2:1.0)
 django-1.11.7阿里云镜像 （docker pull registry.cn-hangzhou.aliyuncs.com/ryynet/django-1.11.7:1.0）
 django-2.0.6.2阿里云镜像 （docker pull registry.cn-hangzhou.aliyuncs.com/ryynet/django-2.0.6.2:1.0）
+golang gim阿里云镜像 （sudo docker pull registry.cn-hangzhou.aliyuncs.com/ryynet/golang-gin:1.0）
 
 
 ———————————Centos--------------------------------------------------
