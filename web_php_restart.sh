@@ -17,9 +17,9 @@ docker run -d -p 9000:9000   --name php5.6 -v "$PWD"/php-fpm.d:/usr/local/etc/ph
 docker run -d -p 9001:9000  --name php5.6-crm0831 -v "$PWD"/php-fpm.d:/usr/local/etc/php-fpm.d  -v "$PWD":/var/www/html -v "$PWD"/php.ini:/usr/local/etc/php/php.ini  -w /var/www/html    --link mysql:mysql  -it 66856d081861
 docker run -d -p 9002:9000  --name jiahe -v "$PWD"/php-fpm.d:/usr/local/etc/php-fpm.d  -v "$PWD":/var/www/html -v "$PWD"/php.ini:/usr/local/etc/php/php.ini  -w /var/www/html  --link mysql:mysql  -it 66856d081861
 
-#golang gim
+#golang gin
 docker rm go-202003 --force
-docker run -d  --name go-202003  -v /home2/Guest:/go/src/app -v /home2/Guest/20200310.zz.whlanren123.top/Service/common:/go/src/common  -v /etc/localtime:/etc/localtime:ro  -it  a59cdbf09522
+docker run -d  --name go-202003  -v /home2/Guest:/go/src/app -v /home2/Guest/20200310.zz.whlanren123.top/Service/common:/go/src/common  -v /etc/localtime:/etc/localtime:ro --link mysql  -it  a59cdbf09522
 
 #django
 docker rm django-20171215 --force
