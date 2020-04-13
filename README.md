@@ -46,7 +46,7 @@ location /addons/shimmer_liveshop/ {
 }
 ```
 
-
+* 20200413 docker php7.2 加入swoole扩展、swoole_loader(2.1.2)
 
 
 
@@ -182,12 +182,13 @@ RUN apt-get install -y \
 ```
 FROM php:7.3.2-fpm-stretch
 RUN apt-get update && \
+    apt-get install libssl-dev && \
     pecl channel-update pecl.php.net && \
-    pecl install apcu igbinary mongodb && \
+    pecl install apcu igbinary mongodb swoole  && \
     # compile Redis with igbinary support
     pecl bundle redis && cd redis && phpize && ./configure --enable-redis-igbinary && make && make install && \
     docker-php-ext-install bcmath sockets pdo_mysql gd exif zip && \
-    docker-php-ext-enable apcu igbinary mongodb opcache redis && \
+    docker-php-ext-enable apcu igbinary mongodb opcache redis swoole && \
     apt-get -y install libmagickwand-dev && \
     pecl install imagick  && \
     docker-php-ext-enable imagick && \
