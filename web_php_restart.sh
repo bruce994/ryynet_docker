@@ -5,7 +5,6 @@
 service docker start
 
 cd /home/ryynet_docker/
-docker rm php7.2 --force
 docker rm redis --force
 docker rm lanren --force
 docker rm guest --force
@@ -22,7 +21,7 @@ rm -rf redis_data
 docker run --name redis -d -v "$PWD"/redis.conf:/usr/local/etc/redis/redis.conf  -v "$PWD"/redis_data:/data  -it redis:latest
 
 docker rm mysql --force
-docker run --name mysql -d  -v "$PWD"/mysql:/var/lib/mysql -e MYSQL_ROOT_PASSWORD=b29VURchQW-d-S2Y -it mysql:5.7.21
+docker run --name mysql -d  -v "$PWD"/mysql:/var/lib/mysql  -v "$PWD"/mysql.cnf:/etc/mysql/conf.d/mysql.cnf  -e MYSQL_ROOT_PASSWORD=b29VURchQW-d-S2Y -e TZ='Asia/Shanghai'   -it mysql:5.7.21
 
 docker run -d -p 9000:9000 --cpus=1 --name lanren -v "$PWD"/php-fpm.d:/usr/local/etc/php-fpm.d  -v /home/ryynet1:/var/www/html -v /home2/Guest:/var/www/html2  -v "$PWD"/php.ini:/usr/local/etc/php/php.ini  -w /var/www/html   --link redis --link mysql  -it 66856d081861
 docker run -d -p 9001:9000 --cpus=0.2  --name guest -v "$PWD"/php-fpm.d:/usr/local/etc/php-fpm.d  -v /home/ryynet1:/var/www/html -v /home2/Guest:/var/www/html2  -v "$PWD"/php.ini:/usr/local/etc/php/php.ini  -w /var/www/html   --link redis   -it 66856d081861
@@ -33,7 +32,12 @@ docker run -d -p 9003:9000 --cpus=0.2  --name virtural  -v "$PWD"/php-fpm.d:/usr
 docker run -d -p 9010:9000 --cpus=0.3  --name lanren-haibao -v "$PWD"/php-fpm.d:/usr/local/etc/php-fpm.d  -v /home/ryynet1:/var/www/html  -v /home/ryynet1/www/bao.lanrenmb.com:/var/www/bao  -v /home2/Guest:/var/www/html2  -v "$PWD"/php.ini:/usr/local/etc/php/php.ini  -w /var/www/html   --link redis   -it 66856d081861
 docker run -d -p 9005:9000 --cpus=1  --name payUser -v "$PWD"/php-fpm.d:/usr/local/etc/php-fpm.d  -v /home/ryynet1:/var/www/html -v /home2/Guest:/var/www/html2  -v "$PWD"/php.ini:/usr/local/etc/php/php.ini  -w /var/www/html   --link redis   -it 66856d081861
 docker run -d -p 9006:9000 --cpus=1  --name payUser2 -v "$PWD"/php-fpm.d:/usr/local/etc/php-fpm.d  -v /home/ryynet1:/var/www/html -v /home2/Guest:/var/www/html2  -v "$PWD"/php.ini:/usr/local/etc/php/php.ini  -w /var/www/html  --link redis  -it 66856d081861
-docker run -d -p 9007:9000 --cpus=1  --name php7.2 -v "$PWD"/php-fpm.d:/usr/local/etc/php-fpm.d  -v /home/ryynet1:/var/www/html -v /home2/Guest:/var/www/html2 -v /home/ryynet_docker/Swoole:/var/www/html/Swoole  -v "$PWD"/php7.2.ini:/usr/local/etc/php/php.ini  -w /var/www/html  --link redis  -it 0d396a9300e4
+
+#php7.2
+docker rm php7.2 --force
+docker run -d -p 9007:9000 --cpus=1  --name php7.2 -v "$PWD"/php-fpm.d:/usr/local/etc/php-fpm.d  -v /home/ryynet1:/var/www/html -v /home2/Guest:/var/www/html2 -v /home/ryynet_docker/Swoole:/var/www/html/Swoole  -v "$PWD"/php7.2.ini:/usr/local/etc/php/php.ini  -w /var/www/html  --link mysql  -it cdf829e2af3f
+#启动php7.2 内部redis
+docker exec -d php7.2 redis-server
 
 docker rm go-202003 --force
 docker run -d  --name go-202003  -v /home2/Guest:/go/src/app -v /home2/Guest/20200310.zz.whlanren123.top/Service/common:/go/src/common  -v /etc/localtime:/etc/localtime:ro  -it a59cdbf09522 bash -c "cd src/app/20200310.zz.whlanren123.top/Service/ && fresh"
@@ -50,9 +54,6 @@ docker run -d -p 8005:8000 --name django-shop -v "$PWD":/usr/src/app -w /usr/src
 
 cd /home/ryynet_docker/
 docker run -d -p 80:80 -p 443:443 --name web -v "$PWD"/nginx.conf:/etc/nginx/nginx.conf:ro -v "$PWD"/logs:/var/log/nginx  -v /home/ryynet1:/usr/share/nginx/html:ro  -v /home2/Guest:/usr/share/nginx/html2:ro   -v /etc/localtime:/etc/localtime:ro  --link lanren  --link guest  --link guest1  --link payUser --link payUser2 --link django-shop --link test --link virtural --link lanren-haibao --link php7.2 --link go-202003  -it ec7e83446356
-
-
-
 
 
 

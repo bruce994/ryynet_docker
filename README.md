@@ -47,7 +47,10 @@ location /addons/shimmer_liveshop/ {
 ```
 
 * 20200413 docker php7.2 加入swoole扩展、swoole_loader(2.1.2)
-
+* 20200414  启动php7.2 内部redis
+```
+docker exec -d php7.2 redis-server
+```
 
 
 
